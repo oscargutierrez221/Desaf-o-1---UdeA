@@ -77,7 +77,7 @@ Teniendo en cuenta los requisitos anteriores, consideramos que los pasos que deb
 ## 3. Algoritmo
 
 Para entender mejor el desarrollo del desafío hemos dispuesto de `Pseint`para analizar y desarrollar el algoritmo base a seguir durante el desarrollo. El algoritmo es:
-![[Diagrama de flujo pseint.png]]
+![alt text](aaa.png)
 Donde el código de `Pseint`es:
 ```pascal
 Algoritmo TetrisBits
