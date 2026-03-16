@@ -1,10 +1,8 @@
 #ifndef PIEZAS_H
 #define PIEZAS_H
 
-class piezas
-{
-public:
-    piezas();
-};
+void imprimir(unsigned short pieza);
+unsigned short rotarDerecha(unsigned short pieza);
+int sentido();
 
 #endif // PIEZAS_H

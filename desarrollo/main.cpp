@@ -1,9 +1,10 @@
 #include <iostream>
+#include "piezas.h"
 
 using namespace std;
 
 int main() {
-    cout << "Hola mundo!" << endl;
+    sentido();
 
     return 0;
 }
