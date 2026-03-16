@@ -1,10 +1,8 @@
 #ifndef PANEL_CONTROL_H
 #define PANEL_CONTROL_H
 
-class panel_control
-{
-public:
-    panel_control();
-};
+
+void panel_control_init();
+
 
 #endif // PANEL_CONTROL_H

@@ -1,11 +1,8 @@
 #include "piezas.h"
 #include <iostream>
-
 using namespace std;
 
-// Definimos las piezas como enteros de 16 bits (4x4)
-
-// Ejemplo de piezas clásicas
+// Definición de las piezas clásicas de Tetris usando números hexadecimales
 unsigned short piezas[] = {
     0x0F00, // I: 0000 1111 0000 0000
     0x0660, // O: 0000 0110 0110 0000
@@ -18,45 +15,14 @@ unsigned short piezas[] = {
 
 // Función para imprimir la pieza en consola
 void imprimir(unsigned short pieza) {
-    string salida = "";
-    for (int i = 0; i < 16; i++) {
-        if (pieza & (1 << (15 - i))) salida += "#";
-        else salida += ".";
-        if ((i+1) % 4 == 0) salida += "\n";
-    }
-    cout << salida << endl;
+  string salida = "";
+  for (int i = 0; i < 16; i++) {
+    if (pieza & (1 << (15 - i)))
+      salida += "#";
+    else
+      salida += ".";
+    if ((i + 1) % 4 == 0)
+      salida += "\n";
+  }
+  cout << salida << endl;
 }
-
-
-// Rotación a la derecha (90°) usando operaciones de bits
-unsigned short rotarDerecha(unsigned short pieza) {
-    unsigned short resultado = 0;
-    for (int fila = 0; fila < 4; fila++) {
-        for (int col = 0; col < 4; col++) {
-            int bitOriginal = (pieza >> (15 - (fila*4 + col))) & 1;
-            int nuevaFila = col;
-            int nuevaCol = 3 - fila;
-            int nuevaPos = nuevaFila*4 + nuevaCol;
-            resultado |= (bitOriginal << (15 - nuevaPos));
-        }
-    }
-    return resultado;
-}
-
-int sentido() {
-    // Selección de la primera pieza del arreglo
-    int idx = 0;
-    unsigned short pieza = piezas[idx];
-
-    cout << "Pieza seleccionada:\n";
-    imprimir(pieza);
-
-    cout << "Rotada a la derecha:\n";
-    imprimir(rotarDerecha(pieza));
-
-    return 0;
-}
-
-
-
-

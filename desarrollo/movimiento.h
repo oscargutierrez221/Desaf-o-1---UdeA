@@ -1,10 +1,6 @@
 #ifndef MOVIMIENTO_H
 #define MOVIMIENTO_H
 
-class movimiento
-{
-public:
-    movimiento();
-};
+unsigned short rotarDerecha(unsigned short pieza);
 
 #endif // MOVIMIENTO_H
