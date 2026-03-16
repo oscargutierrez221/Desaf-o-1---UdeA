@@ -1,11 +1,10 @@
-#include <iostream>
-#include "piezas.h"
-#include "movimiento.h"
+#include "panel_control.h"
 
 using namespace std;
 
 int main() {
-    sentido();
+  validar_dimensiones();
+  imprimir_tablero();
 
-    return 0;
+  return 0;
 }
