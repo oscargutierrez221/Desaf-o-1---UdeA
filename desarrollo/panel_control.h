@@ -1,16 +1,18 @@
 #ifndef PANEL_CONTROL_H
 #define PANEL_CONTROL_H
 
-#include <cstdint>
-
 // Variables globales del tablero
-extern uint8_t** filas;
 extern int ancho;
 extern int alto;
-extern int bytes_x_fila;
+extern bool **tablero;
 
-int panel_control();
+// Variables de la pieza activa (definidas en piezas.cpp)
+extern unsigned short pieza_actual;
+extern int pieza_col;
+extern int pieza_fila;
+
 void validar_dimensiones();
 void imprimir_tablero();
+void destruir_tablero();
 
 #endif // PANEL_CONTROL_H

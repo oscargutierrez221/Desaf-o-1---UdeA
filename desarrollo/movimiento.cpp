@@ -1,16 +1,24 @@
 #include "movimiento.h"
+#include "piezas.h"
 
-// Rotación a la derecha (90°) usando operaciones de bits
-unsigned short rotarDerecha(unsigned short pieza) {
-    unsigned short resultado = 0;
-    for (int fila = 0; fila < 4; fila++) {
-        for (int col = 0; col < 4; col++) {
-            int bitOriginal = (pieza >> (15 - (fila*4 + col))) & 1;
-            int nuevaFila = col;
-            int nuevaCol = 3 - fila;
-            int nuevaPos = nuevaFila*4 + nuevaCol;
-            resultado |= (bitOriginal << (15 - nuevaPos));
-        }
-    }
-    return resultado;
+// Mueve la pieza una columna a la izquierda (tecla A)
+unsigned short moverIzquierda(unsigned short pieza) {
+  if (!hay_colision(pieza, pieza_col - 1, pieza_fila))
+    pieza_col--;
+  return pieza;
+}
+
+// Mueve la pieza una columna a la derecha (tecla D)
+unsigned short moverDerecha(unsigned short pieza) {
+  if (!hay_colision(pieza, pieza_col + 1, pieza_fila))
+    pieza_col++;
+  return pieza;
+}
+
+// Mueve la pieza una fila hacia abajo (tecla S)
+// Devuelve pieza sin cambios; el caller detecta si pieza_fila cambio o no
+unsigned short moverAbajo(unsigned short pieza) {
+  if (!hay_colision(pieza, pieza_col, pieza_fila + 1))
+    pieza_fila++;
+  return pieza;
 }

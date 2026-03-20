@@ -1,10 +1,7 @@
 #ifndef FIN_JUEGO_H
 #define FIN_JUEGO_H
 
-class fin_juego
-{
-public:
-    fin_juego();
-};
+bool juego_terminado();
+void eliminar_filas_llenas();
 
 #endif // FIN_JUEGO_H

@@ -1,83 +1,67 @@
 #include "panel_control.h"
 #include <iostream>
-
 using namespace std;
 
-// Definicion de las variables globales del tablero
-uint8_t** filas      = nullptr;
-int ancho            = 0;
-int alto             = 0;
-int bytes_x_fila     = 0;
 
-int panel_control() {
-  cout << "\n -- Panel de control -- \n";
-  cout << "1. Nuevo juego\n";
-  cout << "2. Salir\n";
-  cout << "Seleccione una opción: ";
-  int opcion;
-  cin >> opcion;
-  do {
-    switch (opcion) {
-    case 1:
-      cout << "Iniciando juego...\n";
-      break;
-    case 2:
-      cout << "Saliendo...\n";
-      break;
-    default:
-      cout << "Opción inválida.\n";
-      break;
-    }
-  } while (opcion != 2);
-
-  return opcion;
-}
+// Variables globales del tablero
+int ancho = 0;
+int alto = 0;
+bool **tablero = nullptr;
 
 void validar_dimensiones() {
-  cout << "Ingrese el ancho del tablero (Minimo 8, multiplo de 8): ";
+  // Pedir el ancho del tablero, que segun la guia deben ser multiplos de 8
+  cout << "Ingrese el ancho del tablero (minimo 8, multiplo de 8): ";
   cin >> ancho;
   while (ancho < 8 || ancho % 8 != 0) {
-    cout << "Ancho invalido. Debe ser multiplo de 8 y mayor o igual a 8: ";
+    cout << "Invalido. Debe ser multiplo de 8: ";
     cin >> ancho;
   }
-  cout << "Ingrese el alto del tablero (Minimo 8, multiplo de 8): ";
+
+  // Lo mismo pero con la altura
+  cout << "Ingrese el alto del tablero (minimo 8, multiplo de 8): ";
   cin >> alto;
   while (alto < 8 || alto % 8 != 0) {
-    cout << "Alto invalido. Debe ser multiplo de 8 y mayor o igual a 8: ";
+    cout << "Invalido. Debe ser multiplo de 8: ";
     cin >> alto;
   }
-  cout << "Dimensiones del tablero: " << ancho << " x " << alto << endl;
 
-  // --- Creacion del tablero ---
-
-  bytes_x_fila = ancho >> 3;  // ancho / 8 usando bits
-
-  // 1) Reservar un puntero por cada fila
-  filas = new uint8_t*[alto];
-
-  // 2) Para cada fila, reservar los bytes e inicializar en 0
-  for (int f = 0; f < alto; f++) {
-    filas[f] = new uint8_t[bytes_x_fila];  // espacio para las piezas
-
-    for (int b = 0; b < bytes_x_fila; b++) {
-      filas[f][b] = filas[f][b] & 0x00;  // celda vacia
+  // Crear el tablero con un puntero por cada fila
+  tablero = new bool *[alto];
+  for (int fila = 0; fila < alto; fila++) {
+    tablero[fila] = new bool[ancho]; // cada fila tiene 'ancho' celdas
+    for (int columna = 0; columna < ancho; columna++) {
+      tablero[fila][columna] = false;
     }
   }
+
+  cout << "Tablero de " << ancho << " x " << alto << " creado.\n";
 }
 
 void imprimir_tablero() {
-  for (int f = 0; f < alto; f++) {
-    for (int b = 0; b < bytes_x_fila; b++) {
-      // Recorrer los 8 bits del byte, del mas significativo al menos
-      for (int bit = 7; bit >= 0; bit--) {
-        // Aislar el bit: shift derecho y AND con 1
-        if ((filas[f][b] >> bit) & 1) {
-          cout << '#';  // celda ocupada por una pieza
-        } else {
-          cout << '.';  // celda vacia
-        }
-      }
+  for (int fila = 0; fila < alto; fila++) {
+    for (int columna = 0; columna < ancho; columna++) {
+
+      // Verificar si la pieza activa ocupa esta celda
+      int fila_relativa = fila - pieza_fila;
+      int columna_relativa = columna - pieza_col;
+      bool en_pieza = (fila_relativa >= 0 && fila_relativa < 4 && columna_relativa >= 0 && columna_relativa < 4) &&
+                      (pieza_actual & (1 << (15 - (fila_relativa * 4 + columna_relativa))));
+
+      if (tablero[fila][columna] || en_pieza)
+        cout << '#';
+      else
+        cout << '.';
     }
-    cout << '\n';  // nueva linea al terminar la fila
+    cout << '\n';
+  }
+}
+
+void destruir_tablero() {
+  if (tablero != nullptr) {
+    for (int fila = 0; fila < alto; fila++) {
+      delete[] tablero[fila]; // liberar cada fila
+    }
+    delete[] tablero; // liberar el arreglo de punteros
+    tablero = nullptr;
   }
 }
