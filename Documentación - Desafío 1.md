@@ -1,3 +1,4 @@
+# Documentacion tetris 
 >Informática II - G1 - 20/03/2026
 
 **Integrantes:** 
@@ -57,6 +58,7 @@ Puede interpretarse que su uso esta en forma piramidal. Viéndolo de la siguient
 
 
 Para comprender de mejor manera la escala piramidal del proceso que se sigue, entonces hemos dispuesto del siguiente diagrama de flujo:
+
 ![alt text](Material/Diagrama_de_flujo_documentacion.png)
 
 Donde el código de `Pseint` es:
@@ -396,17 +398,24 @@ int main() {
 
 ### 3.1 Pruebas de generación inicial del tablero
 Luego de ejecutar el programa, la salida en consola es:
+
 ![alt text](Material/1.png)
+
 Después de solicitar las dimensiones del tablero y verificar que efectivamente sean múltiplos de 8, entonces, imprime el tablero y carga la primera pieza. Para comprobar que efectivamente verifique los números ingresados sean múltiplos de 8, realizamos la siguientes prueba:
 
 **Prueba 1:**
+
 ![alt text](Material/2.png)
 
 **Prueba 2:**
+
 ![alt text](Material/3.png)
+
 **Prueba 3:**
 Mientras que, si ingresamos los múltiplos de 8
+
 ![alt text](Material/4.png)
+
 Efectivamente, imprime e tablero sin errores.
 
 ---
@@ -415,31 +424,44 @@ Para verificar que las piezas efectivamente se muevan en el orden planeado y det
 
 ***Movimiento:***
 **Prueba 1:**
+
 ![alt text](Material/5.png)
+
 luego de presionar `s` se movió un espacio hacia abajo y, al mismo tiempo, tras presionar `S` se movió de la misma manera
+
 ![alt text](Material/6.png)
 
 **Prueba 2:**
+
 ![alt text](Material/7.png)
+
 De la misma forma, al presionar `a` y `A` la pieza se mueve hacia la derecha
 
 **Prueba 3:**
+
 ![alt text](Material/8.png)
+
 Por último, al presionar `d` y `D` se mueve hacia la derecha.
 
 ***Colisión:***
 **Prueba 1:**
+
 ![alt text](Material/9.png)
+
 Tras una pieza chocar con otra, se queda en el lugar donde choco y inmediatamente, aparece la pieza siguiente que al momento de chocar, también se fija en el lugar del impacto.
 
 ---
 ### 3.3 Eliminación de filas y juego terminado
 **Prueba de eliminación de fila:**
+
 ![alt text](Material/10.png)
+
 Observando que al llenarse la ultima fila, se elimino y paso la fila superior a sobrescribir la fila que se lleno.
 
 **Prueba fin del juego:**
+
 ![alt text](Material/11.png)
+
 Una vez la nueva pieza cocho al crearse en la posición de inicio entonces el juego se dio por terminado.
 
 ## 4. Que hicimos y que no hicimos
