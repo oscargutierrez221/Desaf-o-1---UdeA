@@ -4,7 +4,7 @@
 // Variables globales del tablero
 extern int ancho;
 extern int alto;
-extern bool **tablero;
+extern bool** tablero;
 
 // Variables de la pieza activa (definidas en piezas.cpp)
 extern unsigned short pieza_actual;

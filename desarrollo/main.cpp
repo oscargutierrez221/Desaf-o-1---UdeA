@@ -42,7 +42,6 @@ int main() {
         nueva_pieza(indice);
         cout << "[Nueva pieza!]\n";
         if (juego_terminado()) {
-          imprimir_tablero();
           destruir_tablero();
           cout << "\n=== FIN DEL JUEGO ===\n"; // Si termino
           return 0;

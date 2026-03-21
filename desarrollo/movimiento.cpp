@@ -1,5 +1,6 @@
 #include "movimiento.h"
 #include "piezas.h"
+#include "panel_control.h"
 
 // Mueve la pieza una columna a la izquierda (tecla A)
 unsigned short moverIzquierda(unsigned short pieza) {
